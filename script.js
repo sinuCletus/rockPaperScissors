@@ -18,7 +18,8 @@ Method:
 
 //VARIABLES
 let choices = ['rock', 'paper', 'scissors'];
-
+let computerSelection = getComputerChoice();
+let playerSelection = getPlayerSelection();
 //FUNCTIONS
 /*
 name: getComputerChoice
@@ -50,12 +51,34 @@ param: playerSelection, computerSelection
 return: winner
 */
 function playRound(playerSelection, computerSelection) {
-    for (i=1; i<=5; i++) {
-        console.log("Round " + i);
-        computerSelection = getComputerChoice();
-        playerSelection = getPlayerSelection();
+
+    let playerScore = 0;
+    let computerScore = 0;
+    if (computerSelection === playerSelection) {    
         console.log("Computer Chooses: " + computerSelection);
         console.log("You selected: " + playerSelection);
+        console.log("It's a tie!");
+        console.log('Player: ' + playerScore);
+        console.log('Computer: ' + computerScore);
+    } else if (computerSelection != playerSelection) {
+        if ((computerSelection === 'rock' && playerSelection === 'paper') || 
+           (computerSelection === 'paper' && playerSelection === 'scissors') || 
+           (computerSelection === 'scissors' && playerSelection === 'rock')) {
+
+            playerScore += 1;
+            console.log("Computer Chooses: " + computerSelection);
+            console.log("You selected: " + playerSelection);
+            console.log('You Win! ' + playerSelection + ' beats ' + computerSelection);
+            console.log('Player: ' + playerScore);
+            console.log('Computer: ' + computerScore);           
+        } else {
+            console.log("Computer Chooses: " + computerSelection);
+            console.log("You selected: " + playerSelection);
+            console.log('You Lose! ' + computerSelection + ' beats ' + playerSelection);
+            computerScore += 1;
+            console.log('Player: ' + playerScore);
+            console.log('Computer: ' + computerScore); 
+        }
     }
 }
-playRound();
+playRound(playerSelection,computerSelection);
