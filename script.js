@@ -54,31 +54,37 @@ function playRound(playerSelection, computerSelection) {
 
     let playerScore = 0;
     let computerScore = 0;
-    if (computerSelection === playerSelection) {    
-        console.log("Computer Chooses: " + computerSelection);
-        console.log("You selected: " + playerSelection);
-        console.log("It's a tie!");
-        console.log('Player: ' + playerScore);
-        console.log('Computer: ' + computerScore);
+    let result;
+    if (computerSelection === playerSelection) {   
+
+        result = "It's a tie!\nComputer Chose: " + computerSelection + "\nYou selected: " + playerSelection + "\n"
+         + "Player: " + playerScore + "\n" + "Computer: " + computerScore;
+        
+        return result;
     } else if (computerSelection != playerSelection) {
         if ((computerSelection === 'rock' && playerSelection === 'paper') || 
            (computerSelection === 'paper' && playerSelection === 'scissors') || 
            (computerSelection === 'scissors' && playerSelection === 'rock')) {
 
             playerScore += 1;
-            console.log("Computer Chooses: " + computerSelection);
-            console.log("You selected: " + playerSelection);
-            console.log('You Win! ' + playerSelection + ' beats ' + computerSelection);
-            console.log('Player: ' + playerScore);
-            console.log('Computer: ' + computerScore);           
+
+            result = "You Win!\n" + "Computer Chose: " + computerSelection + "\nYou selected: " + playerSelection + "\n"
+            + playerSelection + ' beats ' + computerSelection + "\nPlayer: " + playerScore + "\n" + "Computer: " + computerScore;
+
+            return result;          
         } else {
-            console.log("Computer Chooses: " + computerSelection);
-            console.log("You selected: " + playerSelection);
-            console.log('You Lose! ' + computerSelection + ' beats ' + playerSelection);
+
             computerScore += 1;
-            console.log('Player: ' + playerScore);
-            console.log('Computer: ' + computerScore); 
+
+            result = "You Lose!\n" + "Computer Chose: " + computerSelection + "\nYou selected: " + playerSelection + "\n"
+            + computerSelection + ' beats ' + playerSelection + "\nPlayer: " + playerScore + "\n" + "Computer: " + computerScore;
+
+            return result;
         }
     }
 }
-playRound(playerSelection,computerSelection);
+console.log(playRound(playerSelection,computerSelection));
+/**
+ * @name playGame
+ * @param 
+ */
