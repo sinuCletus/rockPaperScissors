@@ -18,8 +18,13 @@ Method:
 
 //VARIABLES
 let choices = ['rock', 'paper', 'scissors'];
-let computerSelection = getComputerChoice();
-let playerSelection = getPlayerSelection();
+let round = 0;
+let pScore = 0;
+let cScore = 0;
+let draw = 0;
+let result;
+let tally;
+
 //FUNCTIONS
 /*
 name: getComputerChoice
@@ -51,40 +56,47 @@ param: playerSelection, computerSelection
 return: winner
 */
 function playRound(playerSelection, computerSelection) {
+    playerSelection = getPlayerSelection();
+    computerSelection = getComputerChoice();
+    if (computerSelection === playerSelection) {  
+         
+        result = "Draw!";
+    } else if ((computerSelection === 'rock' && playerSelection === 'paper') || 
+        (computerSelection === 'paper' && playerSelection === 'scissors') || 
+        (computerSelection === 'scissors' && playerSelection === 'rock')) {
 
-    let playerScore = 0;
-    let computerScore = 0;
-    let result;
-    if (computerSelection === playerSelection) {   
+        result = "You Win!";  
+    } else {
+        result = "You Lose!";
+        }
+    return result;
+}
 
-        result = "It's a tie!\nComputer Chose: " + computerSelection + "\nYou selected: " + playerSelection + "\n"
-         + "Player: " + playerScore + "\n" + "Computer: " + computerScore;
-        
-        return result;
-    } else if (computerSelection != playerSelection) {
-        if ((computerSelection === 'rock' && playerSelection === 'paper') || 
-           (computerSelection === 'paper' && playerSelection === 'scissors') || 
-           (computerSelection === 'scissors' && playerSelection === 'rock')) {
-
-            playerScore += 1;
-
-            result = "You Win!\n" + "Computer Chose: " + computerSelection + "\nYou selected: " + playerSelection + "\n"
-            + playerSelection + ' beats ' + computerSelection + "\nPlayer: " + playerScore + "\n" + "Computer: " + computerScore;
-
-            return result;          
+/**
+ * @name game
+ * @purpose plays five rounds of the game, records the winner and score, declares winner after last round
+ * @param N/A
+ */
+function game() {
+    for (i = 1; i <= 5; i++) {
+        console.log(playRound());
+        if (result === "Draw!") {
+            draw += 1;
+        } else if (result === "You Win!") {
+            pScore += 1;
         } else {
-
-            computerScore += 1;
-
-            result = "You Lose!\n" + "Computer Chose: " + computerSelection + "\nYou selected: " + playerSelection + "\n"
-            + computerSelection + ' beats ' + playerSelection + "\nPlayer: " + playerScore + "\n" + "Computer: " + computerScore;
-
-            return result;
+            cScore += 1;
+        }
+        if (i === 5) {
+            if (pScore > cScore) {
+                console.log("You Won!");
+            } else if (pScore < cScore) {
+                console.log("Game over! You lose.");
+            } else {
+                console.log("The game is a draw!");
+            }
         }
     }
 }
-console.log(playRound(playerSelection,computerSelection));
-/**
- * @name playGame
- * @param 
- */
+
+game();
