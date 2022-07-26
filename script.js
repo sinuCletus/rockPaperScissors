@@ -1,47 +1,31 @@
-/*------------------------------------------------- 
- ------------------------------------------------- 
-Problem: Create Rock-Paper-Scissors Game
-
-                        Plan
-Crucial functions:
-
-create a function to get the computer to play
-create function to capture player selection
-create function to play a single round
-create function to play a game of 5 rounds
-create a function to reset after either party reaches 5
-
-Method:
-
- ------------------------------------------------- 
-------------------------------------------------- */
-
-//VARIABLES
+//-------------------VARIABLES---------------------
 let choices = ['rock', 'paper', 'scissors'];
-let round = 0;
-let pScore = 0;
-let cScore = 0;
+let playerScore = 0;
+let computerScore = 0;
 let draw = 0;
 let result;
-let tally;
 
-//FUNCTIONS
-/*
-name: getComputerChoice
-purpose: return a random selection from the choice array to use as the computer's rock-paper-scissors selection
-param: N/A
-return: choice
+//-------------------FUNCTIONS---------------------
+
+/**-------------------
+@name getComputerChoice
+@purpose return a random selection from the choices array to use as the computer's rock-paper-scissors selection
+@param N/A
+@return choice
 */
+
 function getComputerChoice() {
     return choices[Math.floor(Math.random()*choices.length)];
 }
 
-/*
-name: getPlayerChoice
-param: N/A
-return: input
+/**-------------------
+@name getPlayerChoice
+@purpose get user input and return that input to be used as the user's selected item
+@param N/A
+@return input
 */
-function getPlayerSelection() {
+
+function getPlayerChoice() {
     let input = prompt('Choose rock, paper, or scissors?');
     input = input.toLowerCase();
     while (input != 'rock' & input != 'paper' && input != 'scissors') {
@@ -50,13 +34,15 @@ function getPlayerSelection() {
     return input;
 }
 
-/*
-name: playRound
-param: playerSelection, computerSelection
-return: winner
+/**-------------------
+@name playRound
+@purpose play single round of rock paper scissors using a user inputted player selection and the computer's selection
+@param playerSelection, computerSelection
+@return result
 */
+
 function playRound(playerSelection, computerSelection) {
-    playerSelection = getPlayerSelection();
+    playerSelection = getPlayerChoice();
     computerSelection = getComputerChoice();
     if (computerSelection === playerSelection) {  
          
@@ -72,25 +58,27 @@ function playRound(playerSelection, computerSelection) {
     return result;
 }
 
-/**
+/**-------------------
  * @name game
  * @purpose plays five rounds of the game, records the winner and score, declares winner after last round
  * @param N/A
+ * @return N/A
  */
+
 function game() {
     for (i = 1; i <= 5; i++) {
         console.log(playRound());
         if (result === "Draw!") {
             draw += 1;
         } else if (result === "You Win!") {
-            pScore += 1;
+            playerScore += 1;
         } else {
-            cScore += 1;
+            computerScore += 1;
         }
         if (i === 5) {
-            if (pScore > cScore) {
+            if (playerScore > computerScore) {
                 console.log("You Won!");
-            } else if (pScore < cScore) {
+            } else if (playerScore < computerScore) {
                 console.log("Game over! You lose.");
             } else {
                 console.log("The game is a draw!");
