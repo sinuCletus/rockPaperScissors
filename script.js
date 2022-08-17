@@ -5,6 +5,10 @@ let computerScore = 0;
 let draw = 0;
 let result;
 
+const playerChoice = document.querySelectorAll("#playerOption button"); 
+playerChoice.forEach(function(button) {
+    button.addEventListener('click', playRound)
+});
 //-------------------FUNCTIONS---------------------
 
 /**-------------------
@@ -25,13 +29,9 @@ function getComputerChoice() {
 @return input
 */
 
-function getPlayerChoice() {
-    let input = prompt('Choose rock, paper, or scissors?');
-    input = input.toLowerCase();
-    while (input != 'rock' & input != 'paper' && input != 'scissors') {
-        input = prompt('Please defend yourself with rock, paper, or scissors. Hint: Check spelling.');
-    }
-    return input;
+function getPlayerChoice(button) {
+    let playerSelection = button.target.id;
+    return playerSelection;
 }
 
 /**-------------------
@@ -87,4 +87,4 @@ function game() {
     }
 }
 
-game();
+//game();
