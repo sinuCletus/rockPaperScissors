@@ -6,8 +6,8 @@ let draw = 0;
 let result;
 
 const playerChoice = document.querySelectorAll("#playerOption button"); 
-playerChoice.forEach(function(button) {
-    button.addEventListener('click', playRound)
+playerChoice.forEach(function(playerSelection) {
+    playerSelection.addEventListener('click', playRound)
 });
 //-------------------FUNCTIONS---------------------
 
@@ -29,9 +29,8 @@ function getComputerChoice() {
 @return input
 */
 
-function getPlayerChoice(button) {
-    let playerSelection = button.target.id;
-    return playerSelection;
+function getPlayerChoice(e) {
+    return e.target.id;
 }
 
 /**-------------------
@@ -42,20 +41,24 @@ function getPlayerChoice(button) {
 */
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = getPlayerChoice();
+    playerSelection = getPlayerChoice(playerSelection);
     computerSelection = getComputerChoice();
     if (computerSelection === playerSelection) {  
-         
+
+        console.log('You both chose ' + playerSelection + '.');
         result = "Draw!";
     } else if ((computerSelection === 'rock' && playerSelection === 'paper') || 
         (computerSelection === 'paper' && playerSelection === 'scissors') || 
         (computerSelection === 'scissors' && playerSelection === 'rock')) {
-
+        
+        console.log('The computer chose ' + computerSelection + ' and you selected ' + playerSelection + '.');
         result = "You Win!";  
     } else {
+
+        console.log('The computer chose ' + computerSelection + ' and you selected ' + playerSelection + '.');
         result = "You Lose!";
         }
-    return result;
+    return console.log(result);
 }
 
 /**-------------------
