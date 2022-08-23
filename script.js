@@ -3,7 +3,7 @@ let choices = ['rock', 'paper', 'scissors'];
 let playerScore = 0;
 let computerScore = 0;
 let draw = 0;
-let round = 1;
+let round = 0;
 let result;
 
 const gameResults = document.getElementById('#results');
@@ -50,50 +50,42 @@ function playRound(playerSelection, computerSelection) {
     playerSelection = getPlayerChoice(playerSelection);
     computerSelection = getComputerChoice();
 
-    if (round < 6) {
+    if (round <= 5) {
         if (computerSelection === playerSelection) {  
 
+            round++;
             console.log(`Round ${round}! You both chose ${playerSelection}.`);
             draw += 1;
             result = "Draw!";
-            round += 1;
-            if (round === 5) {
-                return endGame();
-            }
 
             console.log(computerScore);
             console.log(playerScore);
-            return console.log(result);  
+            console.log(result);  
         } else if ((computerSelection === 'rock' && playerSelection === 'paper') || 
             (computerSelection === 'paper' && playerSelection === 'scissors') || 
             (computerSelection === 'scissors' && playerSelection === 'rock')) {
             
+            round++;
             console.log(`Round ${round}! The computer chose ${computerSelection} and you selected ${playerSelection}.`);
             playerScore += 1;
-            result = "You Win!"; 
-            round += 1; 
-            if (round === 5) {
-                return endGame();
-            }
+            result = "You Win!";
 
             console.log(computerScore);
             console.log(playerScore);
-            return console.log(result);  
+            console.log(result);  
         } else {
     
+            round++;
             console.log(`Round ${round}! The computer chose ${computerSelection} and you selected ${playerSelection}.`);
             computerScore += 1;
             result = "You Lose!";
-            round += 1;
-            if (round === 5) {
-                return endGame();
-            }
 
             console.log(computerScore);
             console.log(playerScore);
-            return console.log(result);  
+            console.log(result);  
         }
     }
+    endGame();
 }
 
 /**-------------------
@@ -104,13 +96,13 @@ function playRound(playerSelection, computerSelection) {
  */
 
 function endGame() {
-    if (computerScore === playerScore) {
-        return console.log('The game is a draw. Everybody wins! But that\'s lame, Try Again!');
-    } else if (playerScore > computerScore) {
-        return console.log('You won! Against all odds and no matter what people said about you, you won! Take that victory lap you winner!');
-    } else {
-        return console.log('Look, someone had to lose. It didn\'t have to be you but the score does not lie. Eat some ice-cream, cry it out, and then get back up on your pony and play again!');
+    if (round === 5) {
+        if (computerScore === playerScore) {
+            return console.log('The game is a draw. Everybody wins! But that\'s not a crowd pleaser, Fight Again!');
+        } else if (playerScore > computerScore) {
+            return console.log('You won! Against all odds and no matter what people said about you, you won! Take that victory lap champ!');
+        } else {
+            return console.log('Look, someone had to lose. Eat some ice-cream, cry, and then get back up on your pony and play again!');
+        }   
     }
 }
-
-//game();
