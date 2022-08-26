@@ -47,6 +47,7 @@ function getPlayerChoice(e) {
     //replace the playRound function in the addEventListener above for the player Seleciton buttons
 
 function playRound(playerSelection, computerSelection) {
+    
     playerSelection = getPlayerChoice(playerSelection);
     computerSelection = getComputerChoice();
 
@@ -54,9 +55,8 @@ function playRound(playerSelection, computerSelection) {
         if (computerSelection === playerSelection) {  
 
             round++;
-            console.log(`Round ${round}! You both chose ${playerSelection}.`);
             draw += 1;
-            result = "Draw!";
+            result = `Round ${round}! Draw! You both chose ${playerSelection}.`;
 
             console.log(computerScore);
             console.log(playerScore);
@@ -66,9 +66,8 @@ function playRound(playerSelection, computerSelection) {
             (computerSelection === 'scissors' && playerSelection === 'rock')) {
             
             round++;
-            console.log(`Round ${round}! The computer chose ${computerSelection} and you selected ${playerSelection}.`);
             playerScore += 1;
-            result = "You Win!";
+            result = `Round ${round}! You Win! The computer chose ${computerSelection} and you selected ${playerSelection}.`;
 
             console.log(computerScore);
             console.log(playerScore);
@@ -76,9 +75,8 @@ function playRound(playerSelection, computerSelection) {
         } else {
     
             round++;
-            console.log(`Round ${round}! The computer chose ${computerSelection} and you selected ${playerSelection}.`);
             computerScore += 1;
-            result = "You Lose!";
+            result = `Round ${round}! You lose! The computer chose ${computerSelection} and you selected ${playerSelection}.`;
 
             console.log(computerScore);
             console.log(playerScore);
