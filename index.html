@@ -8,7 +8,7 @@
     <body>
         <h1>Rock Paper Scissors</h1>
         <h3>Best out of 5</h3>
-        <label for="name">Enter your name: </label><input type="text" id="name">
+        <label for="name">Enter your name: </label><input type="text" id="name"><button type="submit">Begin</button>
         <div id='marquee'>
             <span id="player"></span>
             <p>VS</p>
@@ -20,9 +20,10 @@
             <button id="scissors">Scissors</button>
         </div>
         <div id="results">
-            <span id="result"></span>
-            <span id="pScore"></span>
-            <span id="cScore"></span>
+            <label for="result">Result: </label><span id="result"></span><br>
+            <label for="pScore">Player Score: </label><span id="pScore"></span><br>
+            <label for="cScore">Computer Score: </label><span id="cScore"></span>
+            <p id="conclusion"></p>
         </div>
         <script src="script.js"></script>
     </body>
